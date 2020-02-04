@@ -6,7 +6,7 @@ This RESTful service provides the rentals of a given area. The area is defined b
 
 ## Service Architecture and Search Algorithm
 
-This service uses the Haversine formula (http://movable-type.co.uk/scripts/latlong.html) in order to determine if a coordinate is outside radius of the origin coordinate.
+This service uses the Haversine formula (http://movable-type.co.uk/scripts/latlong.html) in order to determine if a coordinate is outside the radius of the origin coordinate.
 
 The data of the rentals is stored in a Postgres database. To prevent performing the Haversine formula on each record of the database, an initial filtering is done to determine the subset of the database to analyze. Using the law of cosine (https://www.movable-type.co.uk/scripts/latlong-db.html), the approximate ranges of latitudes and longitudes are calculated. These ranges of latitudes and longitudes are queried from the database. The Haversine formula is then performed on the query's result to finally determine which rentals fall within the correct distance from the origin coordinate.
 
