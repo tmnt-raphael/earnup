@@ -13,9 +13,9 @@ var earthRadius = 6371000;
 
 /* GET questions listing. */
 router.get('/', async function(req, res, next) {
-  var lat = req.query.latitude;
-  var long = req.query.longitude;
-  var distance = req.query.distance;
+  var lat = parseFloat(req.query.latitude);
+  var long = parseFloat(req.query.longitude);
+  var distance = parseFloat(req.query.distance);
 
   var latDiff = toDegrees(distance/earthRadius);
   var maxLat = lat + latDiff;
@@ -24,10 +24,23 @@ router.get('/', async function(req, res, next) {
   var maxLong = long + longDiff;
   var minLong = long - longDiff;
 
-  var rentals = await Rentals.findAll({});
+  console.log(maxLat);
+  console.log(minLat);
+  var rentals = await Rentals
+    .findAll({
+      where: {
+        latitude: {
+          [Sequelize.Op.lte]: maxLat,
+          [Sequelize.Op.gte]: minLat
+        },
+        longitude: {
+          [Sequelize.Op.lte]: maxLong,
+          [Sequelize.Op.gte]: minLong
+        }
+      }
+    });
   var filteredRentals = []
   for (var i = 0; i < rentals.length; i++) {
-    console.log(rentals[i].latitude);
     curLat = rentals[i].latitude;
     curLong = rentals[i].longitude
     if(isWithinDistance(lat, long, curLat, curLong, distance)){
