@@ -20,8 +20,8 @@ http://localhost:3000/rentals?latitude=40.64749&longitude=-73.97237&distance=120
 
 The parameters must be specified in the query string of the URL. The parameters are:
 
-1. latitude - This is the latitude part of the coordinates, which is specified in degrees.
-2. longitude - This is the longitude part of the coordinates, which is specified in degrees.
+1. latitude - This is the latitude part of the coordinate, which is specified in degrees.
+2. longitude - This is the longitude part of the coordinate, which is specified in degrees.
 3. distance - This is the radius of the area, which is specified in meters.
 
 The service would return a JSON of the results:
