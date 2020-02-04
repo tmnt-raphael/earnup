@@ -24,8 +24,6 @@ router.get('/', async function(req, res, next) {
   var maxLong = long + longDiff;
   var minLong = long - longDiff;
 
-  console.log(maxLat);
-  console.log(minLat);
   var rentals = await Rentals
     .findAll({
       where: {
