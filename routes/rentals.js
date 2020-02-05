@@ -11,7 +11,7 @@ var Rentals = require('../models/rentals');
 
 var earthRadius = 6371000;
 
-/* GET questions listing. */
+/* GET rentals listing. */
 router.get('/', async function(req, res, next) {
   var lat = parseFloat(req.query.latitude);
   var long = parseFloat(req.query.longitude);
